@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ljh.blog.board.dao.BoardDAO;
 import com.ljh.blog.board.model.BoardVO;
+import com.ljh.common.Pagination;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/dataSource-context.xml", "classpath:spring/root-context.xml"})
@@ -21,18 +22,20 @@ public class BoardDAOTest {
 	@Inject
 	private BoardDAO boardDAO;
 	
-	@Test @Ignore
-	public void testGetBoardList() throws Exception{
-		List<BoardVO> boardList = boardDAO.getBoardList();
-		logger.info("\n Board List \n ");
-		if (boardList.size() > 0) {
-			for (BoardVO list : boardList) {
-				logger.info(list.title);
-			}
-		}else {
-			logger.info("데이터가 없습니다.");
-		}
-	}
+	
+	
+//	@Test @Ignore
+//	public void testGetBoardList() throws Exception{
+//		List<BoardVO> boardList = boardDAO.getBoardList();
+//		logger.info("\n Board List \n ");
+//		if (boardList.size() > 0) {
+//			for (BoardVO list : boardList) {
+//				logger.info(list.title);
+//			}
+//		}else {
+//			logger.info("데이터가 없습니다.");
+//		}
+//	}
 	
 	@Test @Ignore
 	public void testGetBoardContent() throws Exception{
@@ -50,24 +53,29 @@ public class BoardDAOTest {
 		}
 	}
 	
-	@Test @Ignore 
+	@Test 
 	public void testInsertBoard() throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setCate_cd("1");
-		boardVO.setTitle("첫번째 게시물 입니다.");
-		boardVO.setContent("첫번째 게시물입니다.");
+//		boardVO.setTitle("첫번째 게시물 입니다.");
+//		boardVO.setContent("첫번째 게시물입니다.");
 		boardVO.setTag("1");
-		boardVO.setReg_id("1");	
-		int result = boardDAO.insertBoard(boardVO);
-		logger.info("\n Insert Board Result " +result);
-		if(result == 1) {
-			logger.info("\n 게시물 등록 성공 ");
-		} else {
-			logger.info("\n 게시물 등록 실패");
+		boardVO.setReg_id("관리자");	
+		
+		for (int i = 1; i < 1234; i++) {
+			boardVO.setTitle(i + "번 째 게시물입니다.");
+			boardVO.setContent(i + "번 째 게시물 내용입니다.");
+			int result = boardDAO.insertBoard(boardVO);
+			logger.info("\n Insert Board Result " +result);
+			if(result == 1) {
+				logger.info("\n 게시물 등록 성공 ");
+			} else {
+				logger.info("\n 게시물 등록 실패");
+			}
 		}
 	}
 	
-	@Test 
+	@Test @Ignore
 	public void testUpdateBoard() throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setBid(1);

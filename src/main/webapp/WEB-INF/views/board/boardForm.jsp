@@ -42,8 +42,8 @@
 				<form:hidden path="bid"/>
 				<input type="hidden" name="mode"/>
 				<div class="mb-3">
-					<label for="title">제목</label>
-					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">
+					<label for="title">제목</label>	
+					<form:input path="title" type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요"/>
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>

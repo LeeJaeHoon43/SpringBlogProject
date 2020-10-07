@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import com.ljh.blog.board.model.BoardVO;
+import com.ljh.blog.board.model.ReplyVO;
+import com.ljh.common.Search;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -13,8 +15,8 @@ public class BoardDAOImpl implements BoardDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public List<BoardVO> getBoardList() throws Exception {
-		return sqlSession.selectList("com.ljh.blog.board.boardMapper.getBoardList");
+	public List<BoardVO> getBoardList(Search search) throws Exception {
+		return sqlSession.selectList("com.ljh.blog.board.boardMapper.getBoardList", search);
 	}
 
 	@Override
@@ -40,5 +42,31 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public int updateViewCnt(int bid) throws Exception {
 		return sqlSession.update("com.ljh.blog.board.boardMapper.updateViewCnt", bid);
+	}
+
+	// 총 게시물 개수 확인.
+	@Override
+	public int getBoardListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("com.ljh.blog.board.boardMapper.getBoardListCnt", search);
+	}
+
+	@Override
+	public List<ReplyVO> getReplyList(int bid) throws Exception {
+		return sqlSession.selectList("com.ljh.blog.board.replyMapper.getReplyList", bid);
+	}
+
+	@Override
+	public int saveReply(ReplyVO replyVO) throws Exception {
+		return sqlSession.insert("com.ljh.blog.board.replyMapper.saveReply", replyVO);
+	}
+
+	@Override
+	public int updateReply(ReplyVO replyVO) throws Exception {
+		return sqlSession.update("com.ljh.blog.board.replyMapper.updateReply", replyVO);
+	}
+
+	@Override
+	public int deleteReply(int rid) throws Exception {
+		return sqlSession.delete("com.ljh.blog.board.replyMapper.deleteReply", rid);
 	}
 }
