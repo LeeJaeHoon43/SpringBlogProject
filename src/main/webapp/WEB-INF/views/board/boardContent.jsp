@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
 <title>board</title>
 <script type="text/javascript">
 	$(document).ready(function () {
