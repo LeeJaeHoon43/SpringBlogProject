@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
 <title>board</title>
 <script type="text/javascript">
 	$(document).on("click", "#btnSave", function(e) {
@@ -65,4 +66,5 @@
 		</div>
 	</article>
 </body>
+<script src="${pageContext.request.contextPath}/resources/common/js/ckeditor.js"></script>
 </html>

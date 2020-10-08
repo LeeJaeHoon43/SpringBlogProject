@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ljh.blog.menu.menuMapper">
+	<select id="getMenuList" resultType="com.ljh.blog.menu.model.MenuVO">
+		SELECT mid, code, codename, sort_num, comment FROM tbl_menu ORDER BY sort_num DESC, code ASC
+	</select>
+	
+	<insert id="insertMenu" parameterType="com.ljh.blog.menu.model.MenuVO">
+		INSERT INTO tbl_menu(code, codename, sort_num, comment, reg_id, reg_dt) VALUES(#{code}, #{codename}, #{sort_num}, #{comment}, #{reg_id}, now())
+	</insert>
+	
+	<update id="updateMenu" parameterType="com.ljh.blog.menu.model.MenuVO">
+		UPDATE tbl_menu SET codename = #{codename}, comment = #{comment}, sort_num = #{sort_num} WHERE code = #{code}
+	</update>
+	
+	<delete id="deleteMenu" parameterType="String">
+		DELETE FROM tbl_menu WHERE code = #{code}
+	</delete>
+</mapper>

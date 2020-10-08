@@ -14,7 +14,7 @@
 		<org.slf4j-version>1.7.30</org.slf4j-version>
 	</properties>
 	<dependencies>
-	
+
 		<!-- jackson-core -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
